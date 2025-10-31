@@ -17,7 +17,7 @@ function widget.get_widget(widgets_args)
     return wibox.widget {
         {
             id = "icon",
-            image = ICON_DIR .. 'audio-volume-high-symbolic.svg',
+            image = ICON_DIR .. 'audio-volume-high-symbolic.png',
             resize = true,
             widget = wibox.widget.imagebox,
         },

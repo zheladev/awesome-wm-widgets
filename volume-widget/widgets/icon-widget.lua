@@ -31,11 +31,11 @@ function widget.get_widget(widgets_args)
                     volume_icon_name="audio-volume-high-symbolic"
                 end
             end
-            self:get_children_by_id('icon')[1]:set_image(icon_dir .. volume_icon_name .. '.svg')
+            self:get_children_by_id('icon')[1]:set_image(icon_dir .. volume_icon_name .. '.png')
         end,
         mute = function(self)
             self.is_muted = true
-            self:get_children_by_id('icon')[1]:set_image(icon_dir .. 'audio-volume-muted-symbolic.svg')
+            self:get_children_by_id('icon')[1]:set_image(icon_dir .. 'audio-volume-muted-symbolic.png')
         end,
         unmute = function(self)
             self.is_muted = false
