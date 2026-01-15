@@ -1,7 +1,5 @@
 local spawn = require("awful.spawn")
 local utils = require("awesome-wm-widgets.pactl-widget.utils")
-local naughty = require("naughty")
-
 local pactl = {}
 
 
@@ -118,11 +116,6 @@ function pactl.get_sinks_and_sources()
 end
 
 function pactl.set_default(type, name)
-    naughty.notify({
-        title = "AwesomeWM debug",
-        text = "Set default " .. type .. " to " .. name,
-        timeout = 3,
-    })
     spawn('pactl set-default-' .. type .. ' "' .. name .. '"', false)
 end
 
