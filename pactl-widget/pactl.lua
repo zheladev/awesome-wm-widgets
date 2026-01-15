@@ -1,5 +1,6 @@
 local spawn = require("awful.spawn")
 local utils = require("awesome-wm-widgets.pactl-widget.utils")
+local naughty = require("naughty")
 
 local pactl = {}
 
@@ -92,10 +93,10 @@ function pactl.get_sinks_and_sources()
         end
 
         -- Found a key-value pair
-        if string.match(line, "^\t*[^\t]+: ") then
-            local t = utils.split(line, ':')
-            key = utils.trim(t[1]):lower():gsub(' ', '_')
-            value = utils.trim(t[2])
+        local key_part, value_part = line:match("^%s*([^:]+):%s*(.+)$")
+        if key_part and value_part then
+            key = utils.trim(key_part):lower():gsub(' ', '_')
+            value = utils.trim(value_part)
         end
 
         -- Key value pair on 1st level
@@ -117,6 +118,11 @@ function pactl.get_sinks_and_sources()
 end
 
 function pactl.set_default(type, name)
+    naughty.notify({
+        title = "AwesomeWM debug",
+        text = "Set default " .. type .. " to " .. name,
+        timeout = 3,
+    })
     spawn('pactl set-default-' .. type .. ' "' .. name .. '"', false)
 end
 
